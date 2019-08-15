@@ -1,0 +1,66 @@
+﻿组件 main 8个  
+          page-
+          发送数据：_initData
+
+辅助组件  8个  
+          base-
+          发送数据：_initData
+
+
+
+
+历史记录
+
+页面状态
+
+持久化数据
+
+getters 变相的包装 state
+
+
+router-view 组件间传值
+	子组件: this.$emit('sendMsg', 1);
+	 router-view组件: <router-view @sendMsg="showMsg"></router-view>
+	
+	showMsg(num) {console.log(num)} // 1
+
+反之亦然 父组件传值  子组件通过props接收
+
+ 
+vue watch放到created后面，在加载数据渲染数据完成之后使用
+
+首先确认 watch是一个对象，一定要当成对象来用。
+对象就有键，有值。
+
+	键：就是你要监控的那个家伙，比如说$route，这个就是要监控路由的变化。或者是data中的某个变量。
+
+	值可以是函数：就是当你监控的家伙变化时，需要执行的函数，这个函数有两个形参，第一个是当前值，第二个是变化后的值。
+
+	值也可以是函数名：不过这个函数名要用单引号来包裹。
+第三种情况厉害了。
+值是包括选项的对象：选项包括有三个。
+
+	1.第一个handler：其值是一个回调函数。即监听到变化时应该执行的函数。
+
+	2.第二个是deep：其值是true或false；确认是否深入监听。（一般监听时是不能监听到对象属性值的变化的，数组的值变化可以听到。）
+
+	3.第三个是immediate：其值是true或false；确认是否以当前的初始值执行handler的函数。
+
+immediate如果为true 代表如果在 wacth 里声明了之后，就会立即先去执行里面的handler方法
+
+$refs 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 $refs
+
+
+生命周期函数：
+	beforeCreate  在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
+	created  在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。
+	beforeMount 在挂载开始之前被调用：相关的 render 函数首次被调用。
+	mounted
+	beforeUpdate
+	updated
+	activated
+	deactivated
+	beforeDestroy
+	destroyed
+	errorCaptured
+	
